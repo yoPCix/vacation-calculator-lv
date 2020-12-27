@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+
+namespace VacationCalculator
+{
+    public static class Data
+    {
+        public static readonly ImmutableHashSet<DateTime> Holidays = ImmutableHashSet.CreateRange(new[]
+        {
+            new DateTime(2019, 1, 1),
+            new DateTime(2019, 4, 19),
+            new DateTime(2019, 4, 21),
+            new DateTime(2019, 4, 22),
+            new DateTime(2019, 5, 1),
+            new DateTime(2019, 5, 4),
+            new DateTime(2019, 5, 6),
+            new DateTime(2019, 6, 23),
+            new DateTime(2019, 6, 24),
+            new DateTime(2019, 11, 18),
+            new DateTime(2019, 12, 24),
+            new DateTime(2019, 12, 25),
+            new DateTime(2019, 12, 26),
+            new DateTime(2019, 12, 31),
+            new DateTime(2020, 1, 1),
+            new DateTime(2020, 4, 10),
+            new DateTime(2020, 4, 12),
+            new DateTime(2020, 4, 13),
+            new DateTime(2020, 5, 1),
+            new DateTime(2020, 5, 4),
+            new DateTime(2020, 6, 23),
+            new DateTime(2020, 6, 24),
+            new DateTime(2020, 11, 18),
+            new DateTime(2020, 12, 24),
+            new DateTime(2020, 12, 25),
+            new DateTime(2020, 12, 26),
+            new DateTime(2020, 12, 31),
+            new DateTime(2021, 1, 1),
+            new DateTime(2021, 4, 2),
+            new DateTime(2021, 4, 4),
+            new DateTime(2021, 4, 5),
+            new DateTime(2021, 5, 1),
+            new DateTime(2021, 5, 4),
+            new DateTime(2021, 6, 23),
+            new DateTime(2021, 6, 24),
+            new DateTime(2021, 11, 18),
+            new DateTime(2021, 12, 24),
+            new DateTime(2021, 12, 25),
+            new DateTime(2021, 12, 26),
+            new DateTime(2021, 12, 31),
+            new DateTime(2022, 1, 1),
+        });
+
+        public static readonly ImmutableDictionary<int, int> HoursPerMonth = ImmutableDictionary.CreateRange(
+            new Dictionary<int, int>
+            {
+                {201901, 176},
+                {201902, 160},
+                {201903, 168},
+                {201904, 158},
+                {201905, 167},
+                {201906, 152},
+                {201907, 184},
+                {201908, 176},
+                {201909, 168},
+                {201910, 184},
+                {201911, 160},
+                {201912, 142},
+                {202001, 176},
+                {202002, 160},
+                {202003, 176},
+                {202004, 158},
+                {202005, 152},
+                {202006, 159},
+                {202007, 184},
+                {202008, 168},
+                {202009, 176},
+                {202010, 176},
+                {202011, 159},
+                {202012, 158},
+                {202101, 160},
+                {202102, 160},
+                {202103, 184},
+                {202104, 158},
+                {202105, 159},
+                {202106, 159},
+                {202107, 176},
+                {202108, 176},
+                {202109, 176},
+                {202110, 168},
+                {202111, 167},
+                {202112, 166},
+                {202201, 168},
+            });
+    }
+}
