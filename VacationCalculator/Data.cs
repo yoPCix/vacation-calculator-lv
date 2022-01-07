@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 
-namespace VacationCalculator
+namespace VacationCalculator;
+
+public static class Data
 {
-    public static class Data
+    public static readonly ImmutableHashSet<DateTime> Holidays = ImmutableHashSet.CreateRange(new[]
     {
-        public static readonly ImmutableHashSet<DateTime> Holidays = ImmutableHashSet.CreateRange(new[]
-        {
             new DateTime(2019, 1, 1),
             new DateTime(2019, 4, 19),
             new DateTime(2019, 4, 21),
@@ -49,11 +49,27 @@ namespace VacationCalculator
             new DateTime(2021, 12, 26),
             new DateTime(2021, 12, 31),
             new DateTime(2022, 1, 1),
+            new DateTime(2022, 4, 15),
+            new DateTime(2022, 4, 17),
+            new DateTime(2022, 4, 18),
+            new DateTime(2022, 5, 1),
+            new DateTime(2022, 5, 4),
+            new DateTime(2022, 5, 8),
+            new DateTime(2022, 6, 5),
+            new DateTime(2022, 6, 23),
+            new DateTime(2022, 6, 24),
+            new DateTime(2022, 11, 18),
+            new DateTime(2022, 12, 24),
+            new DateTime(2022, 12, 25),
+            new DateTime(2022, 12, 26),
+            new DateTime(2022, 12, 31),
+            new DateTime(2023, 1, 1),
         });
 
-        public static readonly ImmutableDictionary<int, int> HoursPerMonth = ImmutableDictionary.CreateRange(
-            new Dictionary<int, int>
-            {
+    // from https://www.tavirekini.lv/noderigi/2022-gada-darba-dienu-kalendars
+    public static readonly ImmutableDictionary<int, int> HoursPerMonth = ImmutableDictionary.CreateRange(
+        new Dictionary<int, int>
+        {
                 {201901, 176},
                 {201902, 160},
                 {201903, 168},
@@ -91,6 +107,17 @@ namespace VacationCalculator
                 {202111, 167},
                 {202112, 166},
                 {202201, 168},
-            });
-    }
+                {202202, 160},
+                {202203, 184},
+                {202204, 151},
+                {202205, 167},
+                {202206, 159},
+                {202207, 168},
+                {202208, 184},
+                {202209, 176},
+                {202210, 168},
+                {202211, 167},
+                {202212, 166},
+                {202301, 176},
+        });
 }
