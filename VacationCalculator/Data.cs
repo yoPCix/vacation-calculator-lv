@@ -64,7 +64,22 @@ public static class Data
             new DateTime(2022, 12, 26),
             new DateTime(2022, 12, 31),
             new DateTime(2023, 1, 1),
-        });
+            new DateTime(2023, 4, 7),
+            new DateTime(2023, 4, 9),
+            new DateTime(2023, 4, 10),
+            new DateTime(2023, 5, 1),
+            new DateTime(2023, 5, 4),
+            new DateTime(2023, 5, 8),
+            new DateTime(2023, 6, 5),
+            new DateTime(2023, 6, 23),
+            new DateTime(2023, 6, 24),
+            new DateTime(2023, 11, 18),
+            new DateTime(2023, 12, 24),
+            new DateTime(2023, 12, 25),
+            new DateTime(2023, 12, 26),
+            new DateTime(2023, 12, 31),
+            new DateTime(2024, 1, 1),
+    });
 
     // from https://www.tavirekini.lv/noderigi/2022-gada-darba-dienu-kalendars
     public static readonly ImmutableDictionary<int, int> HoursPerMonth = ImmutableDictionary.CreateRange(
@@ -119,5 +134,17 @@ public static class Data
                 {202211, 167},
                 {202212, 166},
                 {202301, 176},
+                {202302, 160},
+                {202303, 184},
+                {202304, 143},
+                {202305, 167},
+                {202306, 167},
+                {202307, 160},
+                {202308, 184},
+                {202309, 168},
+                {202310, 176},
+                {202311, 167},
+                {202312, 152},
+                {202401, 176},
         });
 }
