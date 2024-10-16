@@ -95,6 +95,22 @@ public static class Data
         new DateTime(2024, 12, 26),
         new DateTime(2024, 12, 31),
         new DateTime(2025, 1, 1),
+        new DateTime(2025, 4, 18),
+        new DateTime(2025, 4, 20),
+        new DateTime(2025, 4, 21),
+        new DateTime(2025, 5, 1),
+        new DateTime(2025, 5, 4),
+        new DateTime(2025, 5, 5),
+        new DateTime(2025, 5, 11),
+        new DateTime(2025, 6, 8),
+        new DateTime(2025, 6, 23),
+        new DateTime(2025, 6, 24),
+        new DateTime(2025, 11, 18),
+        new DateTime(2025, 12, 24),
+        new DateTime(2025, 12, 25),
+        new DateTime(2025, 12, 26),
+        new DateTime(2025, 12, 31),
+        new DateTime(2026, 1, 1),
 
     });
 
@@ -174,6 +190,18 @@ public static class Data
             { 202410, 184 },
             { 202411, 160 },
             { 202412, 142 },
-            { 202501, 176 }
+            { 202501, 176 },
+            { 202502, 160 },
+            { 202503, 168 },
+            { 202504, 158 },
+            { 202505, 160 },
+            { 202506, 152 },
+            { 202507, 184 },
+            { 202508, 168 },
+            { 202509, 176 },
+            { 202510, 184 },
+            { 202511, 151 },
+            { 202512, 150 },
+            { 202601, 168 }
         });
 }

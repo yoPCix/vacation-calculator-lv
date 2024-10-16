@@ -8,7 +8,7 @@ public class Calculator
     private const int HoursPerDay = 8;
     private const int HoursPerShortDay = 7;
 
-    public IDictionary<DateTime, decimal> Calculate(int year)
+    public IDictionary<DateTime, decimal> Calculate(int year, int vacationDurationDays)
     {
         var firstDay = new DateTime(year, 1, 1);
         while (firstDay.DayOfWeek != DayOfWeek.Monday)
@@ -20,9 +20,9 @@ public class Calculator
 
         while (firstDay <= new DateTime(year, 12, 31))
         {
-            var averageHourlySalary = GetAverageHourlySalaryFor6Months(firstDay);
+            var averageHourlySalary = GetAverageHourlySalaryFor6PreviousCalendarMonths(firstDay);
             var salaryDifferenceDuringPeriod =
-                GetSalaryDifferenceDuringPeriod(averageHourlySalary, firstDay, firstDay.AddDays(13));
+                GetSalaryDifferenceDuringPeriod(averageHourlySalary, firstDay, firstDay.AddDays(vacationDurationDays - 1));
             vacationPeriods.Add(firstDay, salaryDifferenceDuringPeriod);
             Console.WriteLine(
                 $"Vacation start on {firstDay}, salary difference: {salaryDifferenceDuringPeriod * 100}%");
@@ -32,74 +32,43 @@ public class Calculator
         return vacationPeriods;
     }
 
-    private decimal GetAverageHourlySalaryFor6Months(DateTime firstDay)
+    private decimal GetAverageHourlySalaryFor6PreviousCalendarMonths(DateTime firstDay)
     {
-        var sixMonthsAgo = firstDay.AddMonths(-6);
-        var currentDay = sixMonthsAgo;
+        var firstDayOfMonth = new DateTime(firstDay.Year, firstDay.Month, 1);
+        var sevenMonthsAgo = firstDayOfMonth.AddMonths(-7);
         var totalHours = 0;
-        var totalSalary = 0m;
-        var totalHoursThisMonth = 0;
-        while (currentDay < firstDay)
+        for (var i = 0; i < 6; i++)
         {
-            if (IsWorkingDay(currentDay))
-            {
-                var hoursToday = IsShortDay(currentDay) ? HoursPerShortDay : HoursPerDay;
-                totalHoursThisMonth += hoursToday;
-                totalHours += hoursToday;
-            }
-
-            var newWorkingDay = currentDay.AddDays(1);
-            if (newWorkingDay.Month != currentDay.Month)
-            {
-                totalSalary += totalHoursThisMonth /
-                               (decimal)Data.HoursPerMonth[currentDay.Year * 100 + currentDay.Month];
-                totalHoursThisMonth = 0;
-            }
-
-            currentDay = newWorkingDay;
+            var currentMonth = sevenMonthsAgo.AddMonths(i);
+            totalHours += Data.HoursPerMonth[currentMonth.Year * 100 + currentMonth.Month];
         }
 
-        totalSalary += totalHoursThisMonth / (decimal)Data.HoursPerMonth[currentDay.Year * 100 + currentDay.Month];
-
-        return totalSalary / totalHours;
+        return 6m / totalHours;
     }
-
+    
     private decimal GetSalaryDifferenceDuringPeriod(decimal averageSalaryPerHour, DateTime periodStart,
         DateTime periodEnd)
     {
-        var currentDay = periodStart;
-        var totalExpectedSalary = 1m;
         var totalSalary = 0m;
-        var vacationHoursThisMonth = 0;
-        int currentHoursPerMonth;
-        int normalHours;
+        var currentDay = periodStart;
+        var workingDays = 0;
         while (currentDay <= periodEnd)
         {
             if (IsWorkingDay(currentDay))
             {
+                workingDays++;
                 var hoursToday = IsShortDay(currentDay) ? HoursPerShortDay : HoursPerDay;
-                vacationHoursThisMonth += hoursToday;
+                
+                    var currentHoursPerMonth = Data.HoursPerMonth[currentDay.Year * 100 + currentDay.Month];
+                    var normalHours = currentHoursPerMonth - hoursToday;
+                    totalSalary += normalHours / (decimal)currentHoursPerMonth +
+                                   hoursToday * averageSalaryPerHour;
             }
 
-            var nextDay = currentDay.AddDays(1);
-            if (nextDay.Month != currentDay.Month)
-            {
-                totalExpectedSalary += 1;
-                currentHoursPerMonth = Data.HoursPerMonth[currentDay.Year * 100 + currentDay.Month];
-                normalHours = currentHoursPerMonth - vacationHoursThisMonth;
-                totalSalary += normalHours / (decimal)currentHoursPerMonth +
-                               vacationHoursThisMonth * averageSalaryPerHour;
-                vacationHoursThisMonth = 0;
-            }
+            currentDay = currentDay.AddDays(1);
+        } 
 
-            currentDay = nextDay;
-        }
-
-        currentHoursPerMonth = Data.HoursPerMonth[currentDay.Year * 100 + currentDay.Month];
-        normalHours = currentHoursPerMonth - vacationHoursThisMonth;
-        totalSalary += normalHours / (decimal)currentHoursPerMonth + vacationHoursThisMonth * averageSalaryPerHour;
-
-        return totalSalary / totalExpectedSalary;
+        return totalSalary - workingDays + 1;
     }
 
     private bool IsWorkingDay(DateTime day)

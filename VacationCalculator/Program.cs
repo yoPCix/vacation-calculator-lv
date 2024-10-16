@@ -8,9 +8,9 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var year = 2024;
+        var year = 2025;
         var calculator = new Calculator();
-        var vacationPeriods = calculator.Calculate(year);
+        var vacationPeriods = calculator.Calculate(year, 14);
         GenerateCsv(year, vacationPeriods);
     }
 
